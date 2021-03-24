@@ -1,0 +1,1 @@
+console.log({peter:13,mary:2});
