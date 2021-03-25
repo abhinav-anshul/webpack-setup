@@ -1,3 +1,4 @@
+import "./styles/index.css";
 const maryjane = {
   peter: 13,
   mary: 3,
