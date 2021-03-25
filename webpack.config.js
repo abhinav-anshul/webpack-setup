@@ -9,12 +9,18 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode: "production",
   devtool: "source-map",
+  target: "web",
   plugins: [new MiniCssExtractPlugin()],
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        test: /\.s?css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.js$/,
@@ -29,5 +35,6 @@ module.exports = {
   devServer: {
     contentBase: "./dist",
     port: 9000,
+    hot: true,
   },
 };
