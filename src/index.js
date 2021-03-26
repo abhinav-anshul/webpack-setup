@@ -1,13 +1,4 @@
-import "./styles/index.scss";
-const maryjane = {
-  peter: 13,
-  mary: 3,
-};
+import { render } from "react-dom";
+import App from "./components/App";
 
-const another = {
-  ...maryjane,
-  peter: 15,
-  mary: 4,
-};
-
-console.log(maryjane);
+render(<App />, document.getElementById("root"));
