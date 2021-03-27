@@ -1,9 +1,3 @@
-// let mode = development;
-
-// if (process.env.NODE_ENV === "production") {
-//   mode = production;
-// }
-
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -14,12 +8,25 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx"],
   },
+  output: {
+    assetModuleFilename: "images/[hash]/[ext][query]",
+  },
   module: {
     rules: [
       {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        // type: "asset/resource", -> To generate standalone image in the  dist folder
+        // type : "asset/inline", -> To generate inline images in dist/javascript file image in the dist folder
+        // To let webpack decide what to put in inline and what to in images to have some optimization
+        type: "asset",
+      },
+      {
         test: /\.(s[ac]|c)ss$/i,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: { publicPath: "" },
+          },
           "css-loader",
           "postcss-loader",
           "sass-loader",
